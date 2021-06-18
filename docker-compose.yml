@@ -1,0 +1,29 @@
+version: "3.4"
+ 
+#networks:
+  #traefik;
+ 
+services:
+  locality-database:
+    image: mysql
+    container_name: locality-database
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - ./database:/var/lib/mysql
+    ports:
+      - "7000:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: localit_2021_lupus
+      MYSQL_DATABASE: localidades
+      MYSQL_USER: localit_2021_user
+      MYSQL_PASSWORD: localit_2021_pass
+ 
+  #locality-backend:
+    #image: wyveo/nginx-php-fpm:php80
+    ##container_name: locality-backend
+    #volumes:
+      #- ./backend:/usr/share/nginx
+    #ports:
+      #- "7001:80"
+    #networks:
+      #- traefik
