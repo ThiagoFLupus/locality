@@ -14,16 +14,17 @@ services:
       - "7000:3306"
     environment:
       MYSQL_ROOT_PASSWORD: localit_2021_lupus
-      MYSQL_DATABASE: localidades
+      MYSQL_DATABASE: localities
       MYSQL_USER: localit_2021_user
       MYSQL_PASSWORD: localit_2021_pass
  
-  #locality-backend:
+  locality-backend:
     #image: wyveo/nginx-php-fpm:php80
-    ##container_name: locality-backend
-    #volumes:
-      #- ./backend:/usr/share/nginx
-    #ports:
-      #- "7001:80"
+    image: node:16
+    container_name: locality-backend
+    volumes:
+      - ./backend:/usr/share/nginx
+    ports:
+      - "7001:80"
     #networks:
       #- traefik

@@ -1,0 +1,48 @@
+############### Criação da tabela de países ################
+
+CREATE TABLE `countries` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,  
+  `m49` int unsigned NOT NULL,
+  `iso_alpha_2` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `iso_alpha_3` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sub_region_m49` int unsigned NOT NULL,
+  `sub_region_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `region_m49` int unsigned NOT NULL,
+  `region_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+
+
+############### Criação da tabela de estados ################
+
+CREATE TABLE `states` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT, 
+  `id_on_ibge` bigint unsigned NOT NULL,
+  `uf` varchar(2) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `region_id_on_ibge` int unsigned NOT NULL,
+  `region_initials` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `region_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+
+
+############### Criação da tabela de Municípios ################
+
+CREATE TABLE `counties` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,  
+  `id_on_ibge` bigint unsigned NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `state_id` bigint unsigned NOT NULL,
+  `state_id_on_ibge` bigint unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `counties_state_id_foreign` (`state_id`),
+  CONSTRAINT `counties_state_id_foreign` FOREIGN KEY (`state_id`) REFERENCES `states` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
