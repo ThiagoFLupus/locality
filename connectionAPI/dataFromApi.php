@@ -3,7 +3,7 @@ namespace Locality\connectionAPI;
 
 include 'ConnectionApi.php';
 include __DIR__.'/../connectionDB/GetConnectionDB.php';
-include __DIR__.'/../connectionDB/config.php';
+//include __DIR__.'/../connectionDB/config.php';
 
 //use Locality\connectionAPI\ConnectionApi;
 use Locality\connectionDB\GetConnectionDB;
